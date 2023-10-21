@@ -8,7 +8,7 @@ export default function AddTodoForm({titleRef, descriptionRef, onSubmit}) {
         <TextInput color="info" placeholder="Plan" name="title" id="title" ref={titleRef}  required/>
       </div>
       <div>
-        <TextInput color="info" placeholder="Details" name="description" id="description" ref={descriptionRef} required />
+        <TextInput color="info" placeholder="Details (optional)" name="description" id="description" ref={descriptionRef}  />
       </div>
       <div>
         <Button type="submit" gradientDuoTone="pinkToOrange" outline>
