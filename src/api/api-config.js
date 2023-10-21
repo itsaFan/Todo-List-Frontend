@@ -1,7 +1,9 @@
 import axios from "axios";
 
+// baseURL: "https://us-central1-revou-fullstack-2.cloudfunctions.net/week_17_steffansim/api",
+
 export const api = axios.create({
-  baseURL: "https://us-central1-revou-fullstack-2.cloudfunctions.net/week_17_steffansim/api",
+  baseURL: "https://todo-list-server-production-6c12.up.railway.app/api",
 });
 
 
