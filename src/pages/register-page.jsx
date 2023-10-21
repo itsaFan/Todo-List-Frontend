@@ -11,9 +11,11 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       await registerApi(username, email, password);
       message.config({
@@ -26,6 +28,8 @@ export default function Register() {
     } catch (error) {
       console.error("Register failed:", error.response?.data || error.message);
       setError(error.response?.data.message);
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -33,7 +37,16 @@ export default function Register() {
     <>
       <Card>
         <p className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-6">Register</p>
-        <RegForm username={username} setUsername={setUsername} email={email} setEmail={setEmail} password={password} setPassword={setPassword} onSubmit={handleSubmit} error={error} />
+        <RegForm 
+          username={username} 
+          setUsername={setUsername} 
+          email={email} 
+          setEmail={setEmail} 
+          password={password} 
+          setPassword={setPassword} 
+          onSubmit={handleSubmit} 
+          error={error}
+          loading={loading} />
       </Card>
     </>
   );

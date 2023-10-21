@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import { Button, Label, TextInput } from "flowbite-react";
+import { Button, Label, Spinner, TextInput } from "flowbite-react";
 import { HiUser, HiOutlineEye, HiMail, HiOutlineLockClosed, HiOutlineEyeOff } from "react-icons/hi";
 import { useState } from "react";
 import { emailSchema, passwordSchema } from "./validation/auth-schema";
 
-export default function RegForm({ username, setUsername, email, setEmail, password, setPassword, onSubmit, error }) {
+export default function RegForm({ username, setUsername, email, setEmail, password, setPassword, onSubmit, error, loading }) {
   const [showPassword, setShowPassword] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -149,7 +149,7 @@ export default function RegForm({ username, setUsername, email, setEmail, passwo
       </div>
       <div className="mb-2 my-5 flex justify-center">
         <Button size="lg" type="submit" className="px-28" gradientDuoTone="purpleToBlue">
-          Register
+          {loading ? <Spinner aria-label="Register loading" size="md" className="mx-4" /> : <span>Register</span>}
         </Button>
       </div>
     </form>
