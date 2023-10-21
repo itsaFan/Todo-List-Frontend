@@ -28,7 +28,7 @@ export default function Todo({ onAdd }) {
       titleRef.current.value = "";
       descriptionRef.current.value = "";
     } catch (error) {
-      console.error("Failed to delete todo:", error);
+      console.error("Failed to add todo:", error);
     }
   };
 
