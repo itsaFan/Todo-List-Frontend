@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button, Checkbox, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { HiUser, HiOutlineEye, HiOutlineLockClosed, HiOutlineEyeOff } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { passwordSchema } from "./validation/auth-schema";
 
-
-export default function LoginForm({ identifier, setIdentifier, password, setPassword, onSubmit, error }) {
+export default function LoginForm({ identifier, setIdentifier, password, setPassword, onSubmit, error, loading }) {
   const [showPassword, setShowPassword] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
 
@@ -86,7 +85,7 @@ export default function LoginForm({ identifier, setIdentifier, password, setPass
       </div>
       <div className="mb-2 my-5 flex justify-center">
         <Button size="lg" type="submit" className="px-28" gradientDuoTone="purpleToBlue">
-          Login
+          {loading ? <Spinner aria-label="Login Loading" size="md" className="mx-2" /> : <span>Login</span>}
         </Button>
       </div>
     </form>

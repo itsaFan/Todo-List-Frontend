@@ -9,12 +9,14 @@ export default function Login() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { setAccessToken } = useAuth()
-  const  [ error, setError ] = useState('')
+  const { setAccessToken } = useAuth();
+  const  [ error, setError ] = useState('');
+  const [loading, setLoading] = useState(false)
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     try {
       const accessToken = await loginApi(identifier, password)
       // console.log("Login successful. Access Token:", accessToken);
@@ -24,6 +26,8 @@ export default function Login() {
     } catch (error) {
       console.error("Login failed:", error.response?.data);
       setError(error.response?.data.message)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -37,6 +41,7 @@ export default function Login() {
       setPassword={setPassword}
       onSubmit={handleSubmit}
       error={error}
+      loading={loading}
        />
     </Card>
   );

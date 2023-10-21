@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import Todo from "../components/todos/add-todo";
+import AddTodo from "../components/todos/add-todo";
 import TodoItems from "../components/todos/todo-items";
 import SearchTodo from "../components/todos/search-todo";
 import { useAuth } from "../context/auth-context";
@@ -36,22 +36,9 @@ export default function DashboardPage() {
         <SearchTodo />
       </div>
       <div className="flex flex-col lg:flex-row items-start gap-4">
-        <Todo onAdd={reFetchTodos} />
+        <AddTodo onAdd={reFetchTodos} />
         <TodoItems todos={todos} onDelete={reFetchTodos} onEdit={reFetchTodos} loading={loading} />
       </div>
     </div>
   );
 }
-
-// useEffect(() => {
-//   const fetchTodos = async () => {
-//     try {
-//       const data = await getTodosByCreator(accessToken);
-//       setTodos(data.todos);
-//     } catch (error) {
-//       console.error("Failed to fetch todos:", error);
-//     }
-//   };
-
-//   fetchTodos();
-// }, [accessToken]);

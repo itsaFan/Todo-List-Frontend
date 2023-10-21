@@ -5,7 +5,7 @@ import AddTodoForm from "../forms/add-todo-form";
 import { createTodo } from "../../api/todo-api";
 import { message } from "antd";
 
-export default function Todo({ onAdd }) {
+export default function AddTodo({ onAdd }) {
   const { userPayload, accessToken } = useAuth();
   const username = userPayload?.username;
   const titleRef = useRef(null);
