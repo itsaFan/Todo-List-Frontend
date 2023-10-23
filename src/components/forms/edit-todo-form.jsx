@@ -11,12 +11,12 @@ export default function EditTodoForm({ onSubmit, titleRef, descriptionRef, defau
         <TextInput color="info" placeholder="Plan" name="title" id="title" ref={titleRef} defaultValue={defaultTitle} />
       </div>
       <div>
-      <div className="mb-2 block">
+        <div className="mb-2 block">
           <Label htmlFor="description" value="Edit Your Description" />
         </div>
         <TextInput color="info" placeholder="Details" name="description" id="description" ref={descriptionRef} defaultValue={defaultDescription}  />
       </div>
-  
+
       <div className="flex gap-2 mt-5">
         <Button type="submit" gradientDuoTone="pinkToOrange" outline>
           Edit
