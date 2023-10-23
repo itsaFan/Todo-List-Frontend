@@ -5,6 +5,7 @@ import DeleteTodo from "./delete-todo";
 import EditTodo from "./edit-todo";
 import { useAuth } from "../../context/auth-context";
 
+
 export default function AllTodo({ todos, loading, onDelete, onEdit }) {
   const { userPayload } = useAuth();
   const isAdmin = userPayload?.role === "ROLE_ADMIN";
@@ -35,7 +36,7 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
               <span>
                 <p>
                   <span className="font-medium">Empty! </span>
-                  You can create todos on dashboard
+                  No todos found
                 </p>
               </span>
             </Alert>
@@ -44,9 +45,9 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
               <div>
                 <Table striped hoverable>
                   <Table.Head>
-                    <Table.HeadCell className="w-48">Title</Table.HeadCell>
-                    <Table.HeadCell className="w-72">Description</Table.HeadCell>
-                    {isAdmin && <Table.HeadCell className="w-32">Author</Table.HeadCell>}
+                    <Table.HeadCell >Title</Table.HeadCell>
+                    <Table.HeadCell >Description</Table.HeadCell>
+                    {isAdmin && <Table.HeadCell >Author</Table.HeadCell>}
                     <Table.HeadCell>
                       <span className="sr-only">Action</span>
                     </Table.HeadCell>

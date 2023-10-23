@@ -73,3 +73,19 @@ export const getAllTodos = async (token) => {
     throw error;
   }
 };
+
+export const searchTodos = async (token, query) => {
+  try {
+    const response = await api.get("/todo/search", {
+      headers: { Authorization: `Bearer ${token}` },
+
+      params: {
+        q: query,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Failed to search todos:", error);
+    throw error;
+  }
+};
