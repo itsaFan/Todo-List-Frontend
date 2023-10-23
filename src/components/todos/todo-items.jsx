@@ -4,8 +4,7 @@ import DeleteTodo from "./delete-todo";
 import EditTodo from "./edit-todo";
 import { useAuth } from "../../context/auth-context";
 import Loading from "../UI/loading";
-import { timePassed } from "../../utils/timeStamp";
-
+import { timePassed, timeUntil } from "../../utils/timeStamp";
 
 export default function TodoItems({ todos, onDelete, loading, onEdit }) {
   const { userPayload } = useAuth();
@@ -40,6 +39,7 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 truncate dark:text-white">{todo.title}</p>
+                        <p className="text-sm font-medium text-gray-900 truncate dark:text-white">Deadline: {timeUntil(todo.deadline)}</p>
                         <p className="text-sm text-gray-500 truncate dark:text-gray-400">{todo.description}</p>
                         <p className="text-sm text-gray-500 truncate dark:text-gray-400">{timePassed(todo.createdOn)}</p>
                       </div>

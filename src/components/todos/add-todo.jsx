@@ -1,23 +1,29 @@
 /* eslint-disable react/prop-types */
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useAuth } from "../../context/auth-context";
 import AddTodoForm from "../forms/add-todo-form";
 import { createTodo } from "../../api/todo-api";
 import { message } from "antd";
+// import setHours from 'date-fns/setHours';
+// import setMinutes from 'date-fns/setMinutes';
 
 export default function AddTodo({ onAdd }) {
   const { userPayload, accessToken } = useAuth();
   const username = userPayload?.username;
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
+  // const deadlineRef = useRef(null);
+  const [deadline, setDeadline] = useState(null);
 
   const handleAddTodo = async (e) => {
     e.preventDefault();
 
     const title = titleRef.current.value;
     const description = descriptionRef.current.value;
+    // const deadline = deadlineRef.current.value;
+
     try {
-      await createTodo(title, description, accessToken);
+      await createTodo(title, description, deadline, accessToken);
       message.config({
         top: 180,
       });
@@ -27,6 +33,7 @@ export default function AddTodo({ onAdd }) {
       }
       titleRef.current.value = "";
       descriptionRef.current.value = "";
+      // deadlineRef.current.value = "";
     } catch (error) {
       console.error("Failed to add todo:", error);
     }
@@ -39,7 +46,7 @@ export default function AddTodo({ onAdd }) {
         <br />
         What&apos;s the Plan for Today?
       </h1>
-      <AddTodoForm titleRef={titleRef} descriptionRef={descriptionRef} onSubmit={handleAddTodo} />
+      <AddTodoForm titleRef={titleRef} descriptionRef={descriptionRef} setDeadline={setDeadline} deadline={deadline} onSubmit={handleAddTodo} />
     </div>
   );
 }

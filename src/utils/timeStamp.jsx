@@ -34,3 +34,27 @@ export function timePassed(date) {
 
   return "Just now";
 }
+
+export function timeUntil(deadline) {
+  const now = new Date();
+  const timeDifference = new Date(deadline) - now;
+  if (timeDifference <= 0) {
+    return <span className="dark:text-red-400 text-red-500">Passed</span>;
+  }
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+  if (days > 7) {
+    return Math.floor(days / 7) + " weeks left";
+  } else if (days > 1) {
+    return days + " days left";
+  } else if (days === 1) {
+    return "1 day left";
+  } else if (hours > 1) {
+    return hours + " hours left";
+  } else if (hours === 1) {
+    return "1 hour left";
+  } else {
+    return "less than an hour left";
+  }
+}

@@ -6,6 +6,7 @@ import EditTodo from "./edit-todo";
 import { useAuth } from "../../context/auth-context";
 import { formatDate } from "../../utils/format";
 
+
 export default function AllTodo({ todos, loading, onDelete, onEdit }) {
   const { userPayload } = useAuth();
   const isAdmin = userPayload?.role === "ROLE_ADMIN";
@@ -50,6 +51,7 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
                     <Table.HeadCell>Title</Table.HeadCell>
                     <Table.HeadCell>Description</Table.HeadCell>
                     <Table.HeadCell>Date Created</Table.HeadCell>
+                    <Table.HeadCell>Deadline</Table.HeadCell>
                     {isAdmin && <Table.HeadCell>Author</Table.HeadCell>}
                     <Table.HeadCell>Action</Table.HeadCell>
                   </Table.Head>
@@ -59,6 +61,8 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
                         <Table.Cell>{todo.title}</Table.Cell>
                         <Table.Cell>{todo.description}</Table.Cell>
                         <Table.Cell>{formatDate(todo.createdOn)}</Table.Cell>
+                        <Table.Cell>{formatDate(todo.deadline)}</Table.Cell>
+                        {/* <Table.Cell>{timeUntil(todo.deadline)}</Table.Cell> */}
                         {isAdmin && <Table.Cell>{todo.createdBy.username}</Table.Cell>}
                         <Table.Cell className="flex">
                           <div className="hover:opacity-70">

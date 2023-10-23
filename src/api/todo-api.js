@@ -24,13 +24,14 @@ export const deleteTodo = async (todoId, token) => {
   }
 };
 
-export const createTodo = async (title, description, token) => {
+export const createTodo = async (title, description, deadline, token) => {
   try {
     const response = await api.post(
       "/todo/add",
       {
         title,
         description,
+        deadline,
       },
       {
         headers: { Authorization: `Bearer ${token}` },
