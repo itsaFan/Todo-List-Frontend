@@ -5,7 +5,6 @@ import DeleteTodo from "./delete-todo";
 import EditTodo from "./edit-todo";
 import { useAuth } from "../../context/auth-context";
 
-
 export default function AllTodo({ todos, loading, onDelete, onEdit }) {
   const { userPayload } = useAuth();
   const isAdmin = userPayload?.role === "ROLE_ADMIN";
@@ -45,12 +44,10 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
               <div>
                 <Table striped hoverable>
                   <Table.Head>
-                    <Table.HeadCell >Title</Table.HeadCell>
-                    <Table.HeadCell >Description</Table.HeadCell>
-                    {isAdmin && <Table.HeadCell >Author</Table.HeadCell>}
-                    <Table.HeadCell>
-                      <span className="sr-only">Action</span>
-                    </Table.HeadCell>
+                    <Table.HeadCell>Title</Table.HeadCell>
+                    <Table.HeadCell>Description</Table.HeadCell>
+                    {isAdmin && <Table.HeadCell>Author</Table.HeadCell>}
+                    <Table.HeadCell>Action</Table.HeadCell>
                   </Table.Head>
                   <Table.Body className="divide-y">
                     {getCurrentPageData().map((todo, index) => (
