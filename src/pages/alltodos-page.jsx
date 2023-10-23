@@ -49,7 +49,7 @@ export default function AllTodosPage() {
 
   return (
     <div className={classes.container}>
-      <div className="flex flex-col mt-4 lg:mx-52 md:mx-7 mx-2">
+      <div className="flex flex-col mt-4 lg:mx-48 md:mx-7 mx-2">
         <SearchTodoForm setLoading={setLoading} setTodos={setTodos} />
         <AllTodo todos={todos} loading={loading} onDelete={reFetchAllTodos} onEdit={reFetchAllTodos} />
       </div>

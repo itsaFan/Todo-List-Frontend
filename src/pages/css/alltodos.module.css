@@ -1,10 +1,10 @@
 .container {
-  margin: 0 24rem 0 24rem;
+  margin: 0 22rem 0 22rem;
 }
 
 @media (max-width: 1700px) {
   .container {
-    margin: 0 8rem 0 8rem;
+    margin: 0 6rem 0 6rem;
   }
 }
 

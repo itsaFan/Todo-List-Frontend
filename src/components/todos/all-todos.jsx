@@ -4,6 +4,7 @@ import { Table, Pagination, Alert, Spinner } from "flowbite-react";
 import DeleteTodo from "./delete-todo";
 import EditTodo from "./edit-todo";
 import { useAuth } from "../../context/auth-context";
+import { formatDate } from "../../utils/format";
 
 export default function AllTodo({ todos, loading, onDelete, onEdit }) {
   const { userPayload } = useAuth();
@@ -21,6 +22,8 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
   const onPageChange = (page) => {
     setCurrentPage(page);
   };
+
+
 
   return (
     <div>
@@ -46,6 +49,7 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
                   <Table.Head>
                     <Table.HeadCell>Title</Table.HeadCell>
                     <Table.HeadCell>Description</Table.HeadCell>
+                    <Table.HeadCell>Date Created</Table.HeadCell>
                     {isAdmin && <Table.HeadCell>Author</Table.HeadCell>}
                     <Table.HeadCell>Action</Table.HeadCell>
                   </Table.Head>
@@ -54,6 +58,7 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
                       <Table.Row key={index}>
                         <Table.Cell>{todo.title}</Table.Cell>
                         <Table.Cell>{todo.description}</Table.Cell>
+                        <Table.Cell>{formatDate(todo.createdOn)}</Table.Cell>
                         {isAdmin && <Table.Cell>{todo.createdBy.username}</Table.Cell>}
                         <Table.Cell className="flex">
                           <div className="hover:opacity-70">
