@@ -8,10 +8,10 @@ export default function DropDownNav() {
   const role = userPayload?.role;
 
   return (
-    <Dropdown arrowIcon={false} inline label={<Avatar alt="User settings" rounded />}>
+    <Dropdown arrowIcon={false} inline label={<Avatar alt="User settings" rounded />} className="dark:bg-main-dark ">
       {isLoggedIn ? (
         <>
-          <Dropdown.Header className="mr-5">
+          <Dropdown.Header className="mr-5 ">
             <span className="block text-sm mb-1">Name: {username ? username.charAt(0).toUpperCase() + username.slice(1) : ""}</span>
             <span className="block truncate text-sm font-medium">Role: {role}</span>
           </Dropdown.Header>

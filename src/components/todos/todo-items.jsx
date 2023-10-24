@@ -5,7 +5,7 @@ import EditTodo from "./edit-todo";
 import { useAuth } from "../../context/auth-context";
 import Loading from "../UI/loading";
 import { timePassed, timeUntil } from "../../utils/timeStamp";
-import { formatDateWithWeekday } from "../../utils/format";
+import { formatDateForTodoCard } from "../../utils/format";
 import ExpandableCard from "../UI/expandable-card";
 import { motion } from "framer-motion";
 
@@ -15,7 +15,7 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
 
   const groupByDate = (todos) => {
     return todos.reduce((acc, todo) => {
-      const date = formatDateWithWeekday(todo.createdOn);
+      const date = formatDateForTodoCard(todo.createdOn);
       if (!acc[date]) {
         acc[date] = [];
       }
@@ -27,7 +27,7 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
   const groupedTodos = groupByDate(todos);
 
   return (
-    <motion.div layout className="w-full lg:w-96 px-4 pt-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700">
+    <motion.div layout className="w-full lg:w-96 px-4 py-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-main-dark dark:border-none">
       <div className="flex items-center justify-between mb-4">
         <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Todo List</h5>
         <a href={`/${username}/todos`} className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
@@ -52,7 +52,7 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
                     {groupedTodos[date].reverse().map((todo) => (
                       <li key={todo._id} className="py-3 sm:py-4">
                         <div className="flex items-center space-x-4">
-                          <div className="flex-shrink-0 text-red-700">
+                          <div className="flex-shrink-0 text-rose-500">
                             <HiBookmark size={25} />
                           </div>
                           <div className="flex-1 min-w-0">
@@ -80,7 +80,6 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
       )}
     </motion.div>
   );
-
 
   // <div className="w-full lg:w-96 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
   //   <div className="flex items-center justify-between mb-4">

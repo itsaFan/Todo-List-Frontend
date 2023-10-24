@@ -40,7 +40,7 @@ export default function AddTodo({ onAdd }) {
   };
 
   return (
-    <div className="w-full lg:w-72 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <div className="w-full lg:w-72 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-main-dark dark:border-none">
       <h1 className="mb-4 text-xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-2xl">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-600 ">Hello, {username ? username.charAt(0).toUpperCase() + username.slice(1) : ""}</span>
         <br />

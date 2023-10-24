@@ -31,7 +31,7 @@ export default function ResetPasswordPage() {
 
   return (
     <>
-      <Card>
+      <Card className="dark:bg-main-dark dark:border-none">
         <p className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-6">Reset Password</p>
         <ResetPasswordForm error={error} onSubmit={handleSubmit} password={password} setPassword={setPassword} />
       </Card>

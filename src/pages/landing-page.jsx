@@ -1,10 +1,9 @@
 import { Card } from "flowbite-react";
-import ExpandableCard from "../components/UI/expandable-card";
 
 export default function LandingPage() {
   return (
     <div className="gap-4 flex flex-col">
-      <Card>
+      <Card className="dark:bg-main-dark dark:border-none">
         <h1 className="font-semibold text-2xl mb-5 text-gray-500 dark:text-gray-400">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Hello, Visitor</span> &#128075;
         </h1>
@@ -14,7 +13,6 @@ export default function LandingPage() {
         <p className="text-sm font-medium text-gray-500 dark:text-gray-400">After Loggedin, you can create your own todos list.</p>
         <p className="text-sm font-medium text-gray-500 dark:text-gray-400">You also able to perform CRUD on your own Todos. </p>
       </Card>
-      <ExpandableCard />
     </div>
   );
 }

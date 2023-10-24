@@ -35,7 +35,7 @@ export default function Register() {
 
   return (
     <>
-      <Card>
+      <Card className="dark:bg-main-dark dark:border-none">
         <p className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-6">Register</p>
         <RegForm 
           username={username} 

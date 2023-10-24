@@ -4,6 +4,7 @@ import { useAuth } from "../context/auth-context";
 import { getAllTodos, getTodosByCreator } from "../api/todo-api";
 import SearchTodoForm from "../components/forms/search-todo-form";
 import classes from "./css/alltodos.module.css";
+import { Card } from "flowbite-react";
 
 export default function AllTodosPage() {
   const { accessToken, userPayload } = useAuth();
@@ -50,8 +51,10 @@ export default function AllTodosPage() {
   return (
     <div className={classes.container}>
       <div className="flex flex-col mt-4 lg:mx-48 md:mx-7 mx-2">
-        <SearchTodoForm setLoading={setLoading} setTodos={setTodos} />
-        <AllTodo todos={todos} loading={loading} onDelete={reFetchAllTodos} onEdit={reFetchAllTodos} />
+        <Card  className="dark:bg-main-dark dark:border-none">
+          <SearchTodoForm setLoading={setLoading} setTodos={setTodos} />
+          <AllTodo todos={todos} loading={loading} onDelete={reFetchAllTodos} onEdit={reFetchAllTodos} />
+        </Card>
       </div>
     </div>
   );

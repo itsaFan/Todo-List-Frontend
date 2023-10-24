@@ -5,7 +5,7 @@ import DeleteTodo from "./delete-todo";
 import EditTodo from "./edit-todo";
 import { useAuth } from "../../context/auth-context";
 import { formatDate } from "../../utils/format";
-
+import "./css/pagination.css";
 
 export default function AllTodo({ todos, loading, onDelete, onEdit }) {
   const { userPayload } = useAuth();
@@ -23,8 +23,6 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
   const onPageChange = (page) => {
     setCurrentPage(page);
   };
-
-
 
   return (
     <div>
@@ -46,16 +44,16 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
           ) : (
             <>
               <div>
-                <Table striped hoverable>
+                <Table hoverable>
                   <Table.Head>
-                    <Table.HeadCell>Title</Table.HeadCell>
-                    <Table.HeadCell>Description</Table.HeadCell>
-                    <Table.HeadCell>Date Created</Table.HeadCell>
-                    <Table.HeadCell>Deadline</Table.HeadCell>
-                    {isAdmin && <Table.HeadCell>Author</Table.HeadCell>}
-                    <Table.HeadCell>Action</Table.HeadCell>
+                    <Table.HeadCell className="dark:bg-sub-dark border-b-2 dark:text-white ">Title</Table.HeadCell>
+                    <Table.HeadCell className="dark:bg-sub-dark border-b-2 dark:text-white ">Description</Table.HeadCell>
+                    <Table.HeadCell className="dark:bg-sub-dark border-b-2 dark:text-white ">Date Created</Table.HeadCell>
+                    <Table.HeadCell className="dark:bg-sub-dark border-b-2 dark:text-white ">Deadline</Table.HeadCell>
+                    {isAdmin && <Table.HeadCell className="dark:bg-sub-dark border-b-2 dark:text-white ">Author</Table.HeadCell>}
+                    <Table.HeadCell className="dark:bg-sub-dark border-b-2 dark:text-white ">Action</Table.HeadCell>
                   </Table.Head>
-                  <Table.Body className="divide-y">
+                  <Table.Body className="divide-y dark:bg-sub-dark dark:text-dark-subtext">
                     {getCurrentPageData().map((todo, index) => (
                       <Table.Row key={index}>
                         <Table.Cell>{todo.title}</Table.Cell>
@@ -78,7 +76,7 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
                 </Table>
               </div>
               <div className="flex items-center justify-center my-4">
-                <Pagination currentPage={currentPage} layout="pagination" nextLabel="Next" previousLabel="Back" onPageChange={onPageChange} showIcons totalPages={Math.ceil(todos.length / ITEMS_PER_PAGE)} />
+                <Pagination className="custom-pagination" currentPage={currentPage} layout="pagination" nextLabel="Next" previousLabel="Back" onPageChange={onPageChange} showIcons totalPages={Math.ceil(todos.length / ITEMS_PER_PAGE)} />
               </div>
             </>
           )}

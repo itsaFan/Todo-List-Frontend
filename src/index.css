@@ -8,10 +8,10 @@
 
 
   body {
-    transition: background-color 0.3s ease;
+    /* transition: background-color 0.3s ease; */
     background-color: #FFF; 
   }
   
   body.dark {
-    background-color: #19212d; 
+    background-color: #242629; 
   }

@@ -4,6 +4,7 @@ import { searchTodos } from "../../api/todo-api";
 import { useAuth } from "../../context/auth-context";
 import { TextInput } from "flowbite-react";
 import { HiOutlineSearchCircle } from "react-icons/hi";
+import './css/search.css'
 
 export default function SearchTodoForm({ setLoading, setTodos }) {
   const { accessToken } = useAuth();
@@ -27,6 +28,7 @@ export default function SearchTodoForm({ setLoading, setTodos }) {
   return (
     <div className="my-4">
       <TextInput
+        className="custom"
         icon={HiOutlineSearchCircle}
         id="search" 
         name="search" 

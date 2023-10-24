@@ -12,7 +12,7 @@ export default function Navbar() {
   const username = userPayload?.username;
 
   return (
-    <FlowNav fluid className="shadow">
+    <FlowNav fluid className="shadow dark:bg-main-dark">
       <FlowNav.Brand href="#">
         <img src={logo} alt="logo" width={120} height={30} />
       </FlowNav.Brand>

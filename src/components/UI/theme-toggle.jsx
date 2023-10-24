@@ -22,7 +22,7 @@ export default function ThemeToggle() {
   }, []);
 
   return (
-    <button className="shadow-lg px-2 my-1 rounded-xl bg-slate-300 dark:bg-slate-900 hover:opacity-50" type="button" onClick={toggleTheme}>
+    <button className="shadow-lg px-2 my-1 rounded-xl bg-slate-300 dark:bg-sub-dark hover:opacity-50" type="button" onClick={toggleTheme}>
       {theme === "dark" ? <HiMoon color="white" /> : <HiSun />}
     </button>
   );
