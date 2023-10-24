@@ -7,6 +7,14 @@ export default {
         "main-dark": "#16161a",
         "sub-dark": "#242629",
       },
+      width: {
+        "128": "32rem",
+        "86" : '21.5rem',
+        '92' : '23rem',
+        '200' : '50rem',
+        '232' : '58rem',
+        '248' : '62rem'
+      },
       backgroundColor: {
         "main-dark": "#16161a",
         "sub-dark": "#242629",

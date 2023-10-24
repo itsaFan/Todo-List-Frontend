@@ -27,7 +27,7 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
   const groupedTodos = groupByDate(todos);
 
   return (
-    <motion.div layout className="w-full lg:w-96 px-4 py-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-main-dark dark:border-none">
+    <motion.div layout className="w-full px-4 py-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-main-dark dark:border-none">
       <div className="flex items-center justify-between mb-4">
         <h5 className="text-xl font-bold leading-none  text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500">Todo List</h5>
         <a href={`/${username}/todos`} className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
@@ -47,17 +47,23 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
               .reverse()
               .slice(0, 7)
               .map((date) => (
-                <ExpandableCard key={date} title={date}>
+                <ExpandableCard
+                  id={date}
+                  key={date}
+                  title={date}
+                  cardClassName="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-sub-dark dark:border-none mb-2"
+                  titleClassName="font-bold text-lg text-transparent bg-clip-text text-white "
+                >
                   <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-                    {groupedTodos[date].reverse().map((todo) => (
+                    {groupedTodos[date].slice(-10).reverse().map((todo) => (
                       <li key={todo._id} className="py-3 sm:py-4">
                         <div className="flex items-center space-x-4">
                           <div className="flex-shrink-0 text-rose-500">
                             <HiBookmark size={25} />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate dark:text-white">{todo.title}</p>
-                            <p className="text-sm font-medium text-gray-900 truncate dark:text-white">{timeUntil(todo.deadline)}</p>
+                            <p className="text-sm font-medium tracking-wide first-letter:uppercase underline text-gray-900 truncate dark:text-white">{todo.title}</p>
+                            <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-300">{timeUntil(todo.deadline)}</p>
                             <p className="text-sm text-gray-500 truncate dark:text-gray-400">{todo.description}</p>
                             <p className="text-sm text-gray-500 truncate dark:text-gray-400">{timePassed(todo.createdOn)}</p>
                           </div>

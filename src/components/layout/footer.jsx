@@ -6,7 +6,7 @@ export default function FooterLayout() {
   return (
     <>
       <Divider className="dark:bg-gray-600 " />
-      <Footer container className="bottom-0 shadow-neutral-700 dark:bg-sub-dark dark:shadow-none">
+      <Footer container className="bottom-0 shadow-neutral-700 dark:bg-sub-dark shadow-none">
         <div className="w-full text-center">
           <div className="w-full justify-between flex items-center">
             <Footer.Brand />

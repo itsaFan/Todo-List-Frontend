@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import AddTodo from "../components/todos/add-todo";
 import TodoItems from "../components/todos/todo-items";
-// import SearchTodo from "../components/todos/search-todo";
 import { useAuth } from "../context/auth-context";
 import { getTodosByCreator } from "../api/todo-api";
-// import CardTodoUI from "../components/UI/card-todo";
-// import CardNew from "../components/UI/card2";
+
 
 export default function DashboardPage() {
   const { accessToken } = useAuth();
@@ -34,17 +32,9 @@ export default function DashboardPage() {
 
   return (
     <div className="py-6">
-      {/* <div className="mb-4">
-        <SearchTodo />
-      </div> */}
-      <div className="flex flex-col lg:flex-row items-start gap-4">
-        {/* <CardTodoUI /> */}
+      <div className="flex flex-col lg:flex-row  items-start gap-4 w-92 sm:w-128  lg:w-232">
         <AddTodo onAdd={reFetchTodos} />
         <TodoItems todos={todos} onDelete={reFetchTodos} onEdit={reFetchTodos} loading={loading} />
-        {/* <div>
-          <CardNew />
-          <CardNew />
-        </div> */}
       </div>
     </div>
   );

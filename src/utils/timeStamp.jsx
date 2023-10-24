@@ -45,7 +45,7 @@ export function timeUntil(deadline) {
   if (timeDifference <= 0) {
     return <span className="dark:text-red-400 text-red-500">Passed</span>;
   }
-  const text = "Deadline: ";
+  const text = "Set Deadline: ";
   const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
   const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
