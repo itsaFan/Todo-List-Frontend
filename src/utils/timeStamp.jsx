@@ -37,7 +37,7 @@ export function timePassed(date) {
 
 export function timeUntil(deadline) {
   if (!deadline) {
-    return ;
+    return;
   }
 
   const now = new Date();
@@ -45,20 +45,21 @@ export function timeUntil(deadline) {
   if (timeDifference <= 0) {
     return <span className="dark:text-red-400 text-red-500">Passed</span>;
   }
+  const text = "Deadline: ";
   const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
   const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
   if (days > 7) {
-    return Math.floor(days / 7) + " weeks left";
+    return text + Math.floor(days / 7) + " weeks left";
   } else if (days > 1) {
-    return days + " days left";
+    return text + days + " days left";
   } else if (days === 1) {
-    return "1 day left";
+    return text + "1 day left";
   } else if (hours > 1) {
-    return hours + " hours left";
+    return text + hours + " hours left";
   } else if (hours === 1) {
-    return "1 hour left";
+    return text + "1 hour left";
   } else {
-    return "less than an hour left";
+    return text + "less than an hour left";
   }
 }
