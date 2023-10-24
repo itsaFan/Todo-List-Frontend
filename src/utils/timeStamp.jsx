@@ -36,6 +36,10 @@ export function timePassed(date) {
 }
 
 export function timeUntil(deadline) {
+  if (!deadline) {
+    return ;
+  }
+
   const now = new Date();
   const timeDifference = new Date(deadline) - now;
   if (timeDifference <= 0) {

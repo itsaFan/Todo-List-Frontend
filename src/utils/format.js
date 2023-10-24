@@ -1,4 +1,18 @@
+// export function formatDate(isoString) {
+//   const date = new Date(isoString);
+//   const options = {
+//     day: "numeric",
+//     month: "long",
+//     year: "numeric",
+//   };
+//   return `${date.toLocaleDateString("en-US", options)} ${date.toLocaleTimeString()}`;
+// }
+
 export function formatDate(isoString) {
+  if (!isoString) {
+    return "Deadline is not set";
+  }
+
   const date = new Date(isoString);
   const options = {
     day: "numeric",

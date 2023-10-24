@@ -5,13 +5,29 @@ import EditTodo from "./edit-todo";
 import { useAuth } from "../../context/auth-context";
 import Loading from "../UI/loading";
 import { timePassed, timeUntil } from "../../utils/timeStamp";
+import { formatDateWithWeekday } from "../../utils/format";
+import ExpandableCard from "../UI/expandable-card";
+import { motion } from "framer-motion";
 
 export default function TodoItems({ todos, onDelete, loading, onEdit }) {
   const { userPayload } = useAuth();
   const username = userPayload?.username;
 
+  const groupByDate = (todos) => {
+    return todos.reduce((acc, todo) => {
+      const date = formatDateWithWeekday(todo.createdOn);
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(todo);
+      return acc;
+    }, {});
+  };
+
+  const groupedTodos = groupByDate(todos);
+
   return (
-    <div className="w-full lg:w-96 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <motion.div layout className="w-full lg:w-96 px-4 pt-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700">
       <div className="flex items-center justify-between mb-4">
         <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Todo List</h5>
         <a href={`/${username}/todos`} className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
@@ -27,37 +43,144 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
           {todos.length === 0 ? (
             <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2 mb-20">No todo yet, create one!</p>
           ) : (
-            <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-              {todos
-                .slice(-8)
-                .reverse()
-                .map((todo) => (
-                  <li key={todo._id} className="py-3 sm:py-4">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex-shrink-0 text-red-700">
-                        <HiBookmark size={25} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-900 truncate dark:text-white">{todo.title}</p>
-                        <p className="text-sm font-medium text-gray-900 truncate dark:text-white">Deadline: {timeUntil(todo.deadline)}</p>
-                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">{todo.description}</p>
-                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">{timePassed(todo.createdOn)}</p>
-                      </div>
-                      <div className="inline-flex items-center font-semibold text-gray-900 dark:text-white ">
-                        <div className="hover:opacity-70">
-                          <DeleteTodo todoId={todo._id} onTodoDeleted={onDelete} />
+            Object.keys(groupedTodos)
+              .reverse()
+              .slice(0, 7)
+              .map((date) => (
+                <ExpandableCard key={date} title={date}>
+                  <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+                    {groupedTodos[date].reverse().map((todo) => (
+                      <li key={todo._id} className="py-3 sm:py-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-shrink-0 text-red-700">
+                            <HiBookmark size={25} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-gray-900 truncate dark:text-white">{todo.title}</p>
+                            <p className="text-sm font-medium text-gray-900 truncate dark:text-white">{timeUntil(todo.deadline)}</p>
+                            <p className="text-sm text-gray-500 truncate dark:text-gray-400">{todo.description}</p>
+                            <p className="text-sm text-gray-500 truncate dark:text-gray-400">{timePassed(todo.createdOn)}</p>
+                          </div>
+                          <div className="inline-flex items-center font-semibold text-gray-900 dark:text-white">
+                            <div className="hover:opacity-70">
+                              <DeleteTodo todoId={todo._id} onTodoDeleted={onDelete} />
+                            </div>
+                            <div className="hover:opacity-70">
+                              <EditTodo todoId={todo._id} currentTitle={todo.title} currentDescription={todo.description} onEdited={onEdit} />
+                            </div>
+                          </div>
                         </div>
-                        <div className="hover:opacity-70">
-                          <EditTodo todoId={todo._id} currentTitle={todo.title} currentDescription={todo.description} onEdited={onEdit} />
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-            </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </ExpandableCard>
+              ))
           )}
         </div>
       )}
-    </div>
+    </motion.div>
   );
+
+
+  // <div className="w-full lg:w-96 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+  //   <div className="flex items-center justify-between mb-4">
+  //     <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Todo List</h5>
+  //     <a href={`/${username}/todos`} className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+  //       View all
+  //     </a>
+  //   </div>
+  //   {loading ? (
+  //     <div className="flex justify-center my-8">
+  //       <Loading />
+  //     </div>
+  //   ) : (
+  //     <div className="flow-root">
+  //       {todos.length === 0 ? (
+  //         <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2 mb-20">No todo yet, create one!</p>
+  //       ) : (
+  //         Object.keys(groupedTodos)
+  //           .reverse()
+  //           .slice(0, 7)
+  //           .map((date) => (
+  //             <div key={date}>
+  //               <h6 className="text-gray-600 dark:text-gray-400 mb-2">{date}</h6>
+  //               <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+  //                 {groupedTodos[date].reverse().map((todo) => (
+  //                   <li key={todo._id} className="py-3 sm:py-4">
+  //                     <div className="flex items-center space-x-4">
+  //                       <div className="flex-shrink-0 text-red-700">
+  //                         <HiBookmark size={25} />
+  //                       </div>
+  //                       <div className="flex-1 min-w-0">
+  //                         <p className="text-sm font-medium text-gray-900 truncate dark:text-white">{todo.title}</p>
+  //                         <p className="text-sm font-medium text-gray-900 truncate dark:text-white">{timeUntil(todo.deadline)}</p>
+  //                         <p className="text-sm text-gray-500 truncate dark:text-gray-400">{todo.description}</p>
+  //                         <p className="text-sm text-gray-500 truncate dark:text-gray-400">{timePassed(todo.createdOn)}</p>
+  //                       </div>
+  //                       <div className="inline-flex items-center font-semibold text-gray-900 dark:text-white">
+  //                         <div className="hover:opacity-70">
+  //                           <DeleteTodo todoId={todo._id} onTodoDeleted={onDelete} />
+  //                         </div>
+  //                         <div className="hover:opacity-70">
+  //                           <EditTodo todoId={todo._id} currentTitle={todo.title} currentDescription={todo.description} onEdited={onEdit} />
+  //                         </div>
+  //                       </div>
+  //                     </div>
+  //                   </li>
+  //                 ))}
+  //               </ul>
+  //             </div>
+  //           ))
+  //       )}
+  //     </div>
+  //   )}
+  // </div>
 }
+
+// (
+//   <div className="w-full lg:w-96 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+//     <div className="flex items-center justify-between mb-4">
+//       <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Todo List</h5>
+//       <a href={`/${username}/todos`} className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
+//         View all
+//       </a>
+//     </div>
+//     {loading ? (
+//       <div className="flex justify-center my-8">
+//         <Loading />
+//       </div>
+//     ) : (
+//       <div className="flow-root">
+//         {todos.length === 0 ? (
+//           <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2 mb-20">No todo yet, create one!</p>
+//         ) : (
+//           <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+//             {todos.slice(-8).reverse().map((todo) => (
+//                 <li key={todo._id} className="py-3 sm:py-4">
+//                   <div className="flex items-center space-x-4">
+//                     <div className="flex-shrink-0 text-red-700">
+//                       <HiBookmark size={25} />
+//                     </div>
+//                     <div className="flex-1 min-w-0">
+//                       <p className="text-sm font-medium text-gray-900 truncate dark:text-white">{todo.title}</p>
+//                       <p className="text-sm font-medium text-gray-900 truncate dark:text-white">{timeUntil(todo.deadline)}</p>
+//                       <p className="text-sm text-gray-500 truncate dark:text-gray-400">{todo.description}</p>
+//                       <p className="text-sm text-gray-500 truncate dark:text-gray-400">{timePassed(todo.createdOn)}</p>
+//                     </div>
+//                     <div className="inline-flex items-center font-semibold text-gray-900 dark:text-white ">
+//                       <div className="hover:opacity-70">
+//                         <DeleteTodo todoId={todo._id} onTodoDeleted={onDelete} />
+//                       </div>
+//                       <div className="hover:opacity-70">
+//                         <EditTodo todoId={todo._id} currentTitle={todo.title} currentDescription={todo.description} onEdited={onEdit} />
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </li>
+//               ))}
+//           </ul>
+//         )}
+//       </div>
+//     )}
+//   </div>
+// );
