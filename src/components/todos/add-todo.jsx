@@ -43,7 +43,7 @@ export default function AddTodo({ onAdd }) {
   return (
     <ExpandableCard
       id="add-todo"
-      cardClassName="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-main-dark dark:border-none"
+      cardClassName="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-main-dark dark:border-none"
       title={
         <>
           <h1 className="mb-4 text-xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-2xl hover:opacity-80">

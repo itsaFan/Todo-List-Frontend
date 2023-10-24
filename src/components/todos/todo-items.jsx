@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { HiBookmark } from "react-icons/hi";
+import { HiBookmark, HiOutlineSelector } from "react-icons/hi";
 import DeleteTodo from "./delete-todo";
 import EditTodo from "./edit-todo";
 import { useAuth } from "../../context/auth-context";
@@ -29,7 +29,7 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
   return (
     <motion.div layout className="w-full px-4 py-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-main-dark dark:border-none">
       <div className="flex items-center justify-between mb-4">
-        <h5 className="text-xl font-bold leading-none  text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500">Todo List</h5>
+        <h5 className="text-xl font-bold leading-none  text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500">Todo List </h5>
         <a href={`/${username}/todos`} className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
           View all
         </a>
@@ -51,8 +51,9 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
                   id={date}
                   key={date}
                   title={date}
+                  icon={<HiOutlineSelector size={22} />}
                   cardClassName="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-sub-dark dark:border-none mb-2"
-                  titleClassName="font-bold text-lg text-transparent bg-clip-text text-white "
+                  titleClassName="font-bold text-lg text-transparent bg-clip-text text-white flex justify-between hover:opacity-80"
                 >
                   <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
                     {groupedTodos[date]
