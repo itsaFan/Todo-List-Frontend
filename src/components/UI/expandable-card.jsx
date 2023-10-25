@@ -23,7 +23,7 @@ export default function ExpandableCard({ title, children, cardClassName, titleCl
   return (
     <motion.div layout transition={{ layout: { duration: 1, type: "spring" } }} className={cardClassName}>
       <motion.h2 layout="position" onClick={handleToggle} className={titleClassName}>
-        <p >{title}</p>
+        {title}
         {icon}
       </motion.h2>
       {isOpen && (

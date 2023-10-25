@@ -46,11 +46,11 @@ export default function AddTodo({ onAdd }) {
       cardClassName="w-full lg:w-128 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-main-dark dark:border-none"
       title={
         <>
-          <h1 className="mb-4 text-xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-2xl hover:opacity-80">
+          <p className="mb-4 text-xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-2xl hover:opacity-80">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-500 ">Hello, {username ? username.charAt(0).toUpperCase() + username.slice(1) : ""}</span>
             <br />
             What&apos;s the Plan for Today?
-          </h1>
+          </p>
           <Divider className="bg-rose-500 mt-0 " />
         </>
       }
