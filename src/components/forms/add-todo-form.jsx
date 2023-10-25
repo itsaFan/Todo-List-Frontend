@@ -54,6 +54,7 @@ export default function AddTodoForm({ titleRef, descriptionRef, priority, setPri
         <div className="relative w-full">
           <DatePicker
             name="deadline"
+            autoComplete="off"
             selected={deadline}
             onChange={(date) => setDeadline(date)}
             timeInputLabel="Time:"
