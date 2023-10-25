@@ -43,7 +43,7 @@ export function timeUntil(deadline) {
   const now = new Date();
   const timeDifference = new Date(deadline) - now;
   if (timeDifference <= 0) {
-    return <span className="dark:text-red-400 text-red-500">Passed</span>;
+    return <span className="dark:text-red-400 text-red-500">Deadline Passed</span>;
   }
   const text = "Set Deadline: ";
   const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
