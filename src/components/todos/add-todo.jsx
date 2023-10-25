@@ -13,6 +13,8 @@ export default function AddTodo({ onAdd }) {
   const username = userPayload?.username;
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
+  const [priority, setPriority] = useState(null)
+  // const priorityRef = useRef(null);
   // const deadlineRef = useRef(null);
   const [deadline, setDeadline] = useState(null);
 
@@ -21,10 +23,11 @@ export default function AddTodo({ onAdd }) {
 
     const title = titleRef.current.value;
     const description = descriptionRef.current.value;
+    // const priority = priorityRef.current.value;
     // const deadline = deadlineRef.current.value;
 
     try {
-      await createTodo(title, description, deadline, accessToken);
+      await createTodo(title, description, priority, deadline, accessToken);
       message.config({
         top: 180,
       });
@@ -32,9 +35,13 @@ export default function AddTodo({ onAdd }) {
       if (onAdd) {
         onAdd();
       }
+      // console.log(priority)
       titleRef.current.value = "";
       descriptionRef.current.value = "";
-      // deadlineRef.current.value = "";
+      // priorityRef.current.value = "";
+      setDeadline(null);
+      setPriority(null)
+      
     } catch (error) {
       console.error("Failed to add todo:", error);
     }
@@ -55,7 +62,14 @@ export default function AddTodo({ onAdd }) {
         </>
       }
     >
-      <AddTodoForm titleRef={titleRef} descriptionRef={descriptionRef} setDeadline={setDeadline} deadline={deadline} onSubmit={handleAddTodo} />
+      <AddTodoForm 
+        titleRef={titleRef} 
+        descriptionRef={descriptionRef} 
+        setPriority={setPriority} 
+        priority={priority} 
+        setDeadline={setDeadline} 
+        deadline={deadline} 
+        onSubmit={handleAddTodo} />
     </ExpandableCard>
   );
 }

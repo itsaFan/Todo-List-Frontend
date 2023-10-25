@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { LOCAL_STORAGE_PREFIX } from "../../utils/localStorage-prefix";
 
-
 export default function ExpandableCard({ title, children, cardClassName, titleClassName, id, icon }) {
   const [isOpen, setIsOpen] = useState(false);
 

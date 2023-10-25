@@ -24,13 +24,14 @@ export const deleteTodo = async (todoId, token) => {
   }
 };
 
-export const createTodo = async (title, description, deadline, token) => {
+export const createTodo = async (title, description, priority, deadline, token) => {
   try {
     const response = await api.post(
       "/todo/add",
       {
         title,
         description,
+        priority,
         deadline,
       },
       {
