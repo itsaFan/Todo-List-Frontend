@@ -9,10 +9,6 @@
 // }
 
 export function formatDate(isoString) {
-  if (!isoString) {
-    return "Deadline is not set";
-  }
-
   const date = new Date(isoString);
   const options = {
     day: "numeric",
@@ -52,4 +48,63 @@ export function formatDateForTodoCard(isoString) {
     };
     return date.toLocaleDateString(undefined, options);
   }
+}
+
+export function priorityClassNameColor(priority) {
+  switch (priority) {
+    case "low":
+      return "text-green-400";
+    case "medium":
+      return "text-yellow-300";
+    case "high":
+      return "text-red-500";
+    case "notSet":
+      return "text-transparent";
+  }
+}
+
+export function priorityFormat(priority) {
+  switch (priority) {
+    case "low":
+      return "Low";
+    case "medium":
+      return "Medium";
+    case "high":
+      return "High";
+    case "notSet":
+      return "Not Set";
+  }
+}
+
+export function priorityTableColor(priority) {
+  switch (priority) {
+    case "low":
+      return "text-green-400";
+    case "medium":
+      return "text-yellow-300";
+    case "high":
+      return "text-red-500";
+    case "notSet":
+      return "text-gray-600 dark:text-dark-subtext";
+  }
+}
+
+export function formatDateForDeadline(isoString) {
+  if (!isoString) {
+    return "Deadline is not set";
+  }
+
+  const now = new Date();
+  const timeDif = new Date(isoString) - now;
+  if (timeDif <= 0) {
+    return "Passed";
+  }
+
+  const date = new Date(isoString);
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+  return `${date.toLocaleDateString("en-US", options)} ${date.toLocaleTimeString()}`;
 }

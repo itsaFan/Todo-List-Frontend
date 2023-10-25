@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { HiBookmark, HiOutlineSelector } from "react-icons/hi";
+import { HiBookmark, HiOutlineSelector, HiExclamationCircle } from "react-icons/hi";
 import DeleteTodo from "./delete-todo";
 import EditTodo from "./edit-todo";
 import { useAuth } from "../../context/auth-context";
 import Loading from "../UI/loading";
 import { timePassed, timeUntil } from "../../utils/timeStamp";
-import { formatDateForTodoCard } from "../../utils/format";
+import { formatDateForTodoCard, priorityClassNameColor } from "../../utils/format";
 import ExpandableCard from "../UI/expandable-card";
 import { motion } from "framer-motion";
 
@@ -53,7 +53,7 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
                   title={date}
                   icon={<HiOutlineSelector size={22} />}
                   cardClassName="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-sub-dark dark:border-none mb-2"
-                  titleClassName="font-bold text-lg text-transparent bg-clip-text text-white flex justify-between hover:opacity-80"
+                  titleClassName="font-bold text-lg  bg-clip-text text-gray-900 dark:text-white flex justify-between hover:opacity-80"
                 >
                   <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
                     {groupedTodos[date]
@@ -66,7 +66,11 @@ export default function TodoItems({ todos, onDelete, loading, onEdit }) {
                               <HiBookmark size={25} />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium tracking-wide first-letter:uppercase underline text-gray-900 truncate dark:text-white">{todo.title}</p>
+                              <div className="flex gap-1">
+                                <p className="text-sm font-medium tracking-wide first-letter:uppercase underline text-gray-900 truncate dark:text-white">{todo.title}</p>
+                                <HiExclamationCircle size={17} className={priorityClassNameColor(todo.priority)} />
+                              </div>
+
                               <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-300">{timeUntil(todo.deadline)}</p>
                               <p className="text-sm text-gray-500 truncate dark:text-gray-400">{todo.description}</p>
                               <p className="text-sm text-gray-500 truncate dark:text-gray-400">{timePassed(todo.createdOn)}</p>

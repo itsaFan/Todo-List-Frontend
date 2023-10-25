@@ -6,6 +6,7 @@ export default {
       colors: {
         "main-dark": "#16161a",
         "sub-dark": "#242629",
+        "custom-purple": "#7f5af0",
       },
       width: {
         "128": "32rem",
