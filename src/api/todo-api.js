@@ -45,13 +45,15 @@ export const createTodo = async (title, description, priority, deadline, token) 
   }
 };
 
-export const editTodo = async (todoId, title, description, token) => {
+export const editTodo = async (todoId, title, description, priority, deadline, token) => {
   try {
     const response = await api.put(
       `/todo/edit/${todoId}`,
       {
         title,
         description,
+        priority,
+        deadline,
       },
       {
         headers: { Authorization: `Bearer ${token}` },
