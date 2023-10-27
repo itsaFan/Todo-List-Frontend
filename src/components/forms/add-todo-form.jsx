@@ -8,7 +8,7 @@ export default function AddTodoForm({ titleRef, descriptionRef, priority, setPri
   return (
     <form className="flex max-w-md flex-col gap-4" onSubmit={onSubmit}>
       <div>
-        <TextInput color="info" placeholder="Plan" name="title" id="title" ref={titleRef} required className="" />
+        <TextInput color="info" placeholder="Write your todo" name="title" id="title" ref={titleRef} required className="" />
       </div>
 
       <div>
