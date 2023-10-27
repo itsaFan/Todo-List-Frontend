@@ -13,7 +13,7 @@ export default function AddTodo({ onAdd }) {
   const username = userPayload?.username;
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
-  const [priority, setPriority] = useState(null)
+  const [priority, setPriority] = useState("notSet")
   // const priorityRef = useRef(null);
   // const deadlineRef = useRef(null);
   const [deadline, setDeadline] = useState(null);

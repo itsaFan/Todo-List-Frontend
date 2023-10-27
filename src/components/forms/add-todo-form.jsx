@@ -75,13 +75,3 @@ export default function AddTodoForm({ titleRef, descriptionRef, priority, setPri
     </form>
   );
 }
-
-{
-  /* <div>
-        <Select id="priority" color="info" ref={priorityRef} placeholder="optional">
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </Select>
-      </div> */
-}
