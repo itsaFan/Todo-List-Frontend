@@ -40,7 +40,7 @@ export default function AddTodo({ onAdd }) {
       descriptionRef.current.value = "";
       // priorityRef.current.value = "";
       setDeadline(null);
-      setPriority(null)
+      setPriority("notSet")
       
     } catch (error) {
       console.error("Failed to add todo:", error);
