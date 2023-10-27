@@ -27,7 +27,7 @@ export default function AllTodo({ todos, loading, onDelete, onEdit }) {
   return (
     <div>
       {loading ? (
-        <div className="text-center mt-20">
+        <div className="text-center my-5">
           <Spinner aria-label="Todo Table Loading" size="lg" />
         </div>
       ) : (

@@ -52,7 +52,7 @@ export default function AllTodosPage() {
     <div className={classes.container}>
       <div className="flex flex-col mt-4 lg:mx-48 md:mx-7 mx-2">
         <Card  className="dark:bg-main-dark dark:border-none">
-          <SearchTodoForm setLoading={setLoading} setTodos={setTodos} />
+          <SearchTodoForm setLoading={setLoading} setTodos={setTodos} reFetch={reFetchAllTodos} />
           <AllTodo todos={todos} loading={loading} onDelete={reFetchAllTodos} onEdit={reFetchAllTodos} />
         </Card>
       </div>

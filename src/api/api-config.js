@@ -2,11 +2,10 @@ import axios from "axios";
 
 // baseURL: "https://us-central1-revou-fullstack-2.cloudfunctions.net/week_17_steffansim/api",
 // baseURL: "https://todo-list-server-production-6c12.up.railway.app/api",
-
+// baseURL: "https://us-central1-personal-d9ef9.cloudfunctions.net/todo_server_steffansim/api",
 export const api = axios.create({
   baseURL: "https://us-central1-personal-d9ef9.cloudfunctions.net/todo_server_steffansim/api",
 });
-
 
 // Rotating token
 api.interceptors.response.use(
@@ -23,7 +22,7 @@ api.interceptors.response.use(
 
       localStorage.setItem("accessToken", newToken);
       originalRequest.headers["Authorization"] = "Bearer " + newToken;
-      window.location.reload()
+      window.location.reload();
 
       return axios(originalRequest);
     }
